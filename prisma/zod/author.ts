@@ -9,7 +9,7 @@ export const authorSchema = z.object({
 })
 
 export interface CompleteAuthor extends z.infer<typeof authorSchema> {
-  books: CompleteBook[]
+  Book: CompleteBook[]
 }
 
 /**
@@ -18,5 +18,5 @@ export interface CompleteAuthor extends z.infer<typeof authorSchema> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const relatedAuthorSchema: z.ZodSchema<CompleteAuthor> = z.lazy(() => authorSchema.extend({
-  books: relatedBookSchema.array(),
+  Book: relatedBookSchema.array(),
 }))

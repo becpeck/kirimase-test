@@ -13,15 +13,4 @@ export const getAuthorById = async (id: AuthorId) => {
   return { author: a };
 };
 
-export const getAuthorByIdWithBooks = async (id: AuthorId) => {
-  const { id: authorId } = authorIdSchema.parse({ id });
-  const a = await db.author.findFirst({
-    where: { id: authorId},
-    include: { books: { include: {author: true } } }
-  });
-  if (a === null) return { author: null };
-  const { books, ...author } = a;
-
-  return { author, books:books };
-};
 
